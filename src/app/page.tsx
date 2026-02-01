@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 type Role = "user" | "assistant";
 type Msg = { role: Role; content: string };
@@ -279,7 +281,30 @@ export default function Home() {
                     {m.role === "assistant" && (
                       <div className="mb-1 text-[11px] text-black/45">🐹 햄순이</div>
                     )}
-                    <div className="text-sm leading-relaxed whitespace-pre-wrap">{m.content}</div>
+                    <div className="text-sm leading-relaxed">
+                      <ReactMarkdown
+                        remarkPlugins={[remarkGfm]}
+                        components={{
+                          a: ({ ...props }) => (
+                            <a {...props} className="underline" target="_blank" rel="noreferrer" />
+                          ),
+                          ul: ({ ...props }) => <ul className="list-disc pl-5" {...props} />,
+                          ol: ({ ...props }) => <ol className="list-decimal pl-5" {...props} />,
+                          strong: ({ ...props }) => <strong className="font-extrabold" {...props} />,
+                          pre: ({ ...props }) => (
+                            <pre className="mt-2 overflow-x-auto rounded-xl bg-black/5 p-3 text-xs" {...props} />
+                          ),
+                          code: ({ children, ...props }) => (
+                            <code className="rounded-md bg-black/5 px-1 py-0.5 text-[0.9em]" {...props}>
+                              {children}
+                            </code>
+                          ),
+                        }}
+                      >
+                        {m.content}
+                      </ReactMarkdown>
+                    </div>
+
                   </div>
                 </div>
               ))}
