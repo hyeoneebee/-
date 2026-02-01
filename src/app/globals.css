@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+:root{
+  --milk:#fffaf4;
+  --peach:#ffe0c7;
+  --banana:#fff2b3;
+  --sky:#cfefff;
+  --mint:#d7ffe9;
+  --ink:#1f2937;
+  --line: rgba(31,41,55,.12);
+}
+
+.kawa-bg{
+  background:
+    radial-gradient(30rem 30rem at 12% 12%, var(--peach), transparent 60%),
+    radial-gradient(26rem 26rem at 88% 18%, var(--sky), transparent 60%),
+    radial-gradient(30rem 30rem at 26% 92%, var(--mint), transparent 60%),
+    linear-gradient(to bottom, var(--milk), #ffffff);
+}
+
+.sticker{
+  background: rgba(255,255,255,.92);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 26px rgba(31,41,55,.10);
+  backdrop-filter: blur(10px);
+}
+
+.card{
+  background: rgba(255,255,255,.75);
+  border: 1px solid var(--line);
+  box-shadow: 0 14px 40px rgba(31,41,55,.10);
+  backdrop-filter: blur(12px);
+}
+
+.bubble{
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 18px rgba(31,41,55,.08);
+}
+
+/* 작은 “뿅” 느낌 */
+.pop:hover{ transform: translateY(-1px) scale(1.02); }
+.pop:active{ transform: scale(0.98); }
+.pop{ transition: transform .12s ease; }
+
+/* 말풍선 꼬리(간단 버전) */
+.tail-left{
+  position: relative;
+}
+.tail-left:before{
+  content:"";
+  position:absolute;
+  left:-6px; bottom:10px;
+  width:12px; height:12px;
+  background: inherit;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
+.tail-right{
+  position: relative;
+}
+.tail-right:before{
+  content:"";
+  position:absolute;
+  right:-6px; bottom:10px;
+  width:12px; height:12px;
+  background: inherit;
+  border-right: 1px solid var(--line);
+  border-top: 1px solid var(--line);
+  transform: rotate(45deg);
+  border-radius: 2px;
+}
